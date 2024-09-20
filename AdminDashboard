@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c6b4f;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+        .sidebar .nav-link {
+            color: white;
+            font-size: 18px;
+            width: 100%;
+            text-align: left;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        .sidebar .nav-link:hover {
+            background-color: #245b43;
+        }
+        .sidebar .nav-link i {
+            margin-right: 10px;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: margin-left 0.3s;
+        }
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: auto;
+        }
+        .profile-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .profile-dropdown:hover .profile-dropdown-content {
+            display: block;
+        }
+        .profile-dropdown-content a {
+            color: black;
+            padding: 10px 16px;
+            display: block;
+            text-decoration: none;
+        }
+        .profile-dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        /* Hidden Class for Dynamic Content */
+        .hidden {
+            display: none;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .main-content {
+                margin-left: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <a href="#" class="nav-link" id="home-link"><i class="fas fa-home"></i> Home</a>
+        <a href="#" class="nav-link" id="faq-link"><i class="fas fa-question-circle"></i> Add FAQ </a>
+        <a href="#" class="nav-link" id="new-company-link"><i class="fas fa-building"></i> Add New Company</a>
+        <a href="#" class="nav-link" id="all-students-link"><i class="fas fa-users"></i> Display All Students</a>
+        <a href="#" class="nav-link" id="placed-students-link"><i class="fas fa-user-check"></i> Placed Students</a>
+        <a href="#" class="nav-link" id="pending-students-link"><i class="fas fa-user-clock"></i> Pending Students</a>
+        <a href="#" class="nav-link" id="manage-companies-link"><i class="fas fa-cogs"></i> Manage Companies</a>
+        <a href="#" class="nav-link" id="update-interview-link"><i class="fas fa-edit"></i> Update Interview Status</a>
+        <a href="#" class="nav-link" id="news-link"><i class="fas fa-newspaper"></i> Create/Update News</a>
+        <a href="#" class="nav-link" id="messaging-link"><i class="fas fa-comments"></i> Messaging</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>Admin Dashboard</h1>
+
+            <!-- Profile & Notification -->
+            <div class="profile-dropdown">
+                <i class="fas fa-bell" style="font-size: 24px; cursor: pointer; margin-right: 20px;"></i>
+                <i class="fas fa-user-circle" style="font-size: 40px; cursor: pointer;"></i>
+                <div class="profile-dropdown-content">
+                    <a href="#">View Profile</a>
+                    <a href="#">Edit Profile</a>
+                    <a href="#">Logout</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home Section -->
+        <div id="home-content" class="content-section">
+            <div class="news-card">
+                <h3>News for Students</h3>
+                <p>Important information regarding upcoming placements will be shared here. Stay tuned for updates on new companies visiting the campus for interviews.</p>
+            </div>
+            <div class="news-card">
+                <h3>Alumni Meet</h3>
+                <p>An interactive session with alumni from various industries is scheduled for next month. This will help students gain insights into the current trends in the job market.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Content -->
+        <div id="faq-content" class="content-section hidden">
+            <h2>Add FAQ</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="faq-question" class="form-label">Question</label>
+                    <input type="text" class="form-control" id="faq-question" placeholder="Enter FAQ question">
+                </div>
+                <div class="mb-3">
+                    <label for="faq-answer" class="form-label">Answer</label>
+                    <textarea class="form-control" id="faq-answer" rows="3" placeholder="Enter FAQ answer"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+
+        <!-- Other Sections (Add New Company, All Students, etc.) -->
+        <div id="new-company-content" class="content-section hidden">
+            <h2>Add New Company</h2>
+            <!-- Add New Company Form goes here -->
+        </div>
+        <div id="all-students-content" class="content-section hidden">
+            <h2>All Students</h2>
+            <!-- Display All Students Content goes here -->
+        </div>
+        <div id="placed-students-content" class="content-section hidden">
+            <h2>Placed Students</h2>
+            <!-- Placed Students Content goes here -->
+        </div>
+        <div id="pending-students-content" class="content-section hidden">
+            <h2>Pending Students</h2>
+            <!-- Pending Students Content goes here -->
+        </div>
+        <div id="manage-companies-content" class="content-section hidden">
+            <h2>Manage Companies</h2>
+            <!-- Manage Companies Content goes here -->
+        </div>
+        <div id="update-interview-content" class="content-section hidden">
+            <h2>Update Interview Status</h2>
+            <!-- Update Interview Status Content goes here -->
+        </div>
+        <div id="news-content" class="content-section hidden">
+            <h2>Create/Update News</h2>
+            <!-- Create/Update News Form goes here -->
+        </div>
+        <div id="messaging-content" class="content-section hidden">
+            <h2>Messaging</h2>
+            <!-- Messaging Section goes here -->
+        </div>
+    </div>
+
+    <script>
+        // Function to hide all sections
+        function hideAllSections() {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+        }
+
+        // Add event listeners to the sidebar links
+        document.getElementById('home-link').addEventListener('click', function() {
+            hideAllSections();
+            document.getElementById('home-content').classList.remove('hidden');
+        });
+
+        document.getElementById('faq-link').addEventListener('click', function() {
+            hideAllSections();
+            document.getElementById('faq-content').classList.remove('hidden');
+        });
+
+        document.getElementById('new-company-link').addEventListener('click', function() {
+            hideAllSections();
+            document.getElementById('new-company-content').classList.remove('hidden');
+        });
+
+        document.getElementById('all-students-link').addEventListener('click', function() {
+            hideAllSections();
+            document.getElementById('all-students-content').classList.remove('hidden');
+        });
+
+        document.getElementById('placed-students-link').addEventListener('click', function() {
+            hideAllSections();
+            document.getElementById('placed-students-content').classList.remove('hidden');
+        });
+
+        document.getElementById('pending-students-link').addEventListener('click', function() {
+            hideAllSections();
+            document.getElementById('pending-students-content').classList.remove('hidden');
+        });
+
+        document.getElementById('manage-companies-link').addEventListener('click', function() {
+            hideAllSections();
+            document.getElementById('manage-companies-content').classList.remove('hidden');
+        });
+
+        document.getElementById('update-interview-link').addEventListener('click', function() {
+            hideAllSections();
+            document.getElementById('update-interview-content').classList.remove('hidden');
+        });
+
+        document.getElementById('news-link').addEventListener('click', function() {
+            hideAllSections();
+            document.getElementById('news-content').classList.remove('hidden');
+        });
+
+        document.getElementById('messaging-link').addEventListener('click', function() {
+            hideAllSections();
+            document.getElementById('messaging-content').classList.remove('hidden');
+        });
+
+        // Default load home content
+        window.onload = function() {
+            document.getElementById('home-link').click();
+        };
+    </script>
+
+</body>
+</html>
